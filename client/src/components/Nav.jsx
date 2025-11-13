@@ -14,6 +14,16 @@ export default function Nav() {
     const [profileOpen, setProfileOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const handleSignOut = () => {
+        fetch("http://localhost:5000/api/auth/signout",{
+            credentials: "include",
+            method: "POST",
+        })
+            .then(res => res.json())
+            .then(() => setIsLoggedIn(false))
+            .catch(() => setIsLoggedIn(false))
+    }
+
     // 👇 Check cookies or token when component mounts
     useEffect(() => {
         fetch("http://localhost:5000/api/auth/check", {
@@ -139,11 +149,7 @@ export default function Nav() {
                                                 Settings
                                             </Link>
                                             <button
-                                                onClick={() => {
-                                                    // clear cookie and simulate signout
-                                                    document.cookie = "token=; Max-Age=0; path=/;";
-                                                    setIsLoggedIn(false);
-                                                }}
+                                                onClick={handleSignOut}
                                                 className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-slate-50"
                                             >
                                                 Sign out
