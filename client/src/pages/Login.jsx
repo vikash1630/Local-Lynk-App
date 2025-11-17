@@ -137,7 +137,7 @@ export default function Login() {
             type="button"
             onClick={handleGuest}
             disabled={loadingGuest}
-            className="text-indigo-600 font-medium hover:underline disabled:opacity-50"
+            className="text-indigo-600 font-medium cursor-pointer hover:underline disabled:opacity-50"
           >
             {loadingGuest ? "Continuing..." : "Guest"}
           </button>
